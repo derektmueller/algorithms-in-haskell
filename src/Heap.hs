@@ -1,6 +1,6 @@
 module Heap where
 
-newtype Heap a = Heap [a] 
+newtype Heap a = Heap [a]
 
 instance (Show a) => Show (Heap a) where
   show h = show' h 0
@@ -14,6 +14,9 @@ instance (Show a) => Show (Heap a) where
           show' h (left i) ++
           show' h (right i)
         else []
+
+size :: Heap a -> Int
+size (Heap a) = length a
 
 depth :: Integral a => Int -> a
 depth i = floor (logBase 2 (fromIntegral (i + 1)))
@@ -52,7 +55,7 @@ heapifyUp h@(Heap a) i =
 
 heapifyDown :: Ord a => Heap a -> Int -> Heap a
 heapifyDown h@(Heap a) i =
-  let n = length a in
+  let n = size h in
   if left i > n - 1
   then h
   else 
@@ -63,7 +66,7 @@ heapifyDown h@(Heap a) i =
             if minKey == key h (left i)
             then left i
             else right i
-        else 2 * i
+        else left i
     in
       if key h j < key h i
       then heapifyDown (swap h i j) j
@@ -80,6 +83,6 @@ delete :: Ord a => Heap a -> Int -> Heap a
 delete h@(Heap a) i
   | i < (length a - 1) = 
     heapifyDown (delete (swap h i (length a - 1)) (length a - 1)) i
-  | i == (length a - 1) = Heap (take (length a - 2) a)
+  | i == (length a - 1) = Heap (take i a)
   | otherwise = h
      
