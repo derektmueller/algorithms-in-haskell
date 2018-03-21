@@ -1,6 +1,6 @@
 module Heap where
 
-newtype Heap a = Heap [a]
+newtype Heap a = Heap [a] deriving Eq
 
 instance (Show a) => Show (Heap a) where
   show h = show' h 0

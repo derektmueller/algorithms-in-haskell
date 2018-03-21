@@ -13,6 +13,12 @@ Algorithms in __Algorithm Design__ by Jon Kleinberg and Éva Tardos, implemented
 make all
 ```
 
+## run specs
+
+```
+make spec
+```
+
 ## run examples
 
 ```

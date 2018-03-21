@@ -2,7 +2,7 @@ module PriorityQueue where
 
 import Heap
 
-newtype PriorityQueue a = PriorityQueue (Heap a)
+newtype PriorityQueue a = PriorityQueue (Heap a) deriving (Show, Eq)
 
 mkPriorityQueue :: PriorityQueue a
 mkPriorityQueue = PriorityQueue (Heap [])
