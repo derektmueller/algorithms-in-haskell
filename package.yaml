@@ -28,6 +28,7 @@ library:
   - Unique
   - containers
   - MissingH
+  - ilist
 
 executables:
   algorithms-in-haskell-exe:

@@ -11,18 +11,18 @@ describe_graph =
     describe "mkGraph" $ do
       describe "when the edges specified are empty" $ do
         it "returns a graph with the specified edges" $ do
-          mkGraph [] `shouldBe` Graph (AdjacencyList [])
+          mkGraph 0 [] `shouldBe` Graph (AdjacencyList [])
       describe "when the edges specified are non-empty" $ do
         it "returns a graph with the specified edges" $ do
-          mkGraph [(0, 1), (1, 2), (2, 3)] `shouldBe` 
+          mkGraph 4 [(0, 1), (1, 2), (2, 3)] `shouldBe` 
             Graph (AdjacencyList [[1], [0, 2], [1, 3], [2]])
     describe "bfs" $ do 
      it "returns the BFS search tree rooted at s" $ do
-       bfs (mkGraph [(0, 1), (0, 2), (1, 2)]) 0 `shouldBe` 
+       bfs (mkGraph 3 [(0, 1), (0, 2), (1, 2)]) 0 `shouldBe` 
           Graph (AdjacencyList [[1, 2], [0], [0]])
     describe "dfs" $ do 
      it "returns the DFS search tree rooted at s" $ do
-       dfs (mkGraph [(0, 1), (0, 2), (1, 2)]) 0 `shouldBe` 
+       dfs (mkGraph 3 [(0, 1), (0, 2), (1, 2)]) 0 `shouldBe` 
           Graph (AdjacencyList [[1], [0, 2], [1]])
       
 
