@@ -5,6 +5,8 @@ import Test.Hspec
 import Graph
 import AdjacencyList
 import Data.Tree
+import BFS
+import DFS
 
 describe_graph = 
   describe "Graph" $ do

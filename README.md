@@ -4,8 +4,8 @@ Algorithms in __Algorithm Design__ by Jon Kleinberg and Éva Tardos, implemented
 
 ## Algorithms
 
-* [BFS](./src/Graph.hs)
-* [DFS](./src/Graph.hs)
+* [BFS](./src/BFS.hs)
+* [DFS](./src/DFS.hs)
 
 ## Data Structures
 
