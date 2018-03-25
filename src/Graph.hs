@@ -34,34 +34,25 @@ exploreNextLayer :: Graph -> [Int] -> [Int] -> Graph -> Graph
 exploreNextLayer _ [] _ tree = tree
 exploreNextLayer g queue discovered tree = exploreNextLayer g queue' discovered' tree'
   where 
-    (queue', discovered', tree') =
-      foldr (\u (queue, discovered, graph) -> 
-        let undiscoveredNeighbors = filter (not . (flip elem) discovered) (neighbors g u) in
-            (undiscoveredNeighbors ++ queue, 
-             Set.toList . Set.fromList $ undiscoveredNeighbors ++ discovered, 
-             foldr (\v acc -> insert acc (u, v)) graph undiscoveredNeighbors)
-        ) ([], discovered, tree) queue
+    u = head queue
+    undiscoveredNeighbors = filter (not . (flip elem) discovered) (neighbors g u) 
+    queue' = (tail queue) ++ undiscoveredNeighbors
+    discovered' = Set.toList . Set.fromList $ undiscoveredNeighbors ++ discovered
+    tree' = foldr (\v acc -> insert acc (u, v)) tree undiscoveredNeighbors
 
 dfs :: Graph -> Int -> Graph
-dfs g s = exploreNode g s stack discovered parents tree
+dfs g s = tree'
   where
     tree = (Graph $ AL.initAdjacencyList n)
     n = length $ vertices g
     discovered = []
-    stack = [s]
-    parents = take n $ repeat (-1)
+    (_, tree') = exploreNode g s discovered tree
 
-exploreNode :: Graph -> Int -> [Int] -> [Int] -> [Int] -> Graph -> Graph
-exploreNode _ _ [] _ _ tree = tree
-exploreNode g s stack discovered parents tree =
-  if not $ elem u discovered
-  then
-    exploreNode g s
-      (neighbors g u ++ (tail stack))
-      (u : discovered)
-      (foldr (\v acc -> modifyAt v (\_ -> u) acc) parents (neighbors g u))
-      (if u == s then tree else insert tree (u, parents !! u))
-  else
-    exploreNode g s (tail stack) discovered parents tree
-  where
-    u = head stack
+exploreNode :: Graph -> Int -> [Int] -> Graph -> ([Int], Graph)
+exploreNode g s discovered tree = foldr (\u (discovered', tree') -> 
+    if (not $ elem u discovered')
+    then 
+      exploreNode g u discovered' (insert tree' (s, u))
+    else 
+      (discovered', tree')
+  ) (s : discovered, tree) (neighbors g s)

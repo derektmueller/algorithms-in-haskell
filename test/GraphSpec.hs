@@ -23,6 +23,6 @@ describe_graph =
     describe "dfs" $ do 
      it "returns the DFS search tree rooted at s" $ do
        dfs (mkGraph 3 [(0, 1), (0, 2), (1, 2)]) 0 `shouldBe` 
-          Graph (AdjacencyList [[1], [0, 2], [1]])
+          Graph (AdjacencyList [[2], [2], [0, 1]])
       
 
