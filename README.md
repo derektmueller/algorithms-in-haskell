@@ -2,10 +2,17 @@
 
 Algorithms in __Algorithm Design__ by Jon Kleinberg and Éva Tardos, implemented in haskell.
 
-## Datatypes
+## Algorithms
+
+* [BFS](./src/Graph.hs)
+* [DFS](./src/Graph.hs)
+
+## Data Structures
 
 * [Heap](./src/Heap.hs)
 * [Priority Queue](./src/PriorityQueue.hs)
+* [Graph](./src/Graph.hs)
+* [AdjacencyList](./src/AdjacencyList.hs)
 
 ## build
 
