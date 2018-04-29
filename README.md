@@ -6,6 +6,7 @@ Algorithms in __Algorithm Design__ by Jon Kleinberg and Éva Tardos, implemented
 
 * [BFS](./src/BFS.hs)
 * [DFS](./src/DFS.hs)
+* [Topological Sort](./src/TopSort.hs)
 
 ## Data Structures
 
@@ -13,6 +14,7 @@ Algorithms in __Algorithm Design__ by Jon Kleinberg and Éva Tardos, implemented
 * [Priority Queue](./src/PriorityQueue.hs)
 * [Graph](./src/Graph.hs)
 * [AdjacencyList](./src/AdjacencyList.hs)
+* [Directed Graph](./src/Digraph.hs)
 
 ## build
 

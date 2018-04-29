@@ -18,10 +18,25 @@ mkAdjacencyList edges = foldr (\edge acc ->
 insert :: AdjacencyList -> (Int, Int) -> AdjacencyList
 insert (AdjacencyList lists) (u, v) = 
   AdjacencyList $ 
-    (take u lists) ++ [(Set.toList . Set.fromList $ v : (lists !! u))] ++ (drop (u + 1) lists)
+    (take u lists) ++ 
+    [(Set.toList . Set.fromList $ v : (lists !! u))] ++ 
+    (drop (u + 1) lists)
+
+delete :: AdjacencyList -> (Int, Int) -> AdjacencyList
+delete (AdjacencyList lists) (u, v) = 
+  AdjacencyList $ 
+    (take u lists) ++ 
+    [(Set.toList . Set.fromList $ filter (/=v) (lists !! u))] ++
+    (drop (u + 1) lists)
 
 neighbors :: AdjacencyList -> Int -> [Int]
 neighbors (AdjacencyList lists) u = lists !! u
 
 vertices :: AdjacencyList -> [Int]
 vertices (AdjacencyList lists) = [0..(length lists - 1)]
+
+edges :: AdjacencyList -> [(Int, Int)]
+edges al@(AdjacencyList lists) = do
+  u <- vertices al
+  v <- lists !! u
+  [(u, v)]

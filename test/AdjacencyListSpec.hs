@@ -16,7 +16,13 @@ describe_adjacency_list =
             AdjacencyList [[1], [0, 2], [1, 3], [2]]
     describe "insert" $ do
       it "inserts the directed edge into the adjacency list" $ do
-        insert (initAdjacencyList 5) (0, 1) `shouldBe` AdjacencyList [[1], [], [], [], []]
+        insert (initAdjacencyList 5) (0, 1) `shouldBe` 
+          AdjacencyList [[1], [], [], [], []]
+    describe "delete" $ do
+      it "removes the directed edge into the adjacency list" $ do
+        delete (mkAdjacencyList [(0, 1), (1, 2), (2, 3)]) (0, 1) 
+          `shouldBe` 
+          AdjacencyList [[], [0, 2], [1, 3], [2]]
     describe "neighbors" $ do
       it "returns the neighbors of specified node" $ do
         neighbors (mkAdjacencyList [(0, 1), (1, 2), (2, 3)]) 1 `shouldBe` [0, 2]

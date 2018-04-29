@@ -6,7 +6,9 @@ import Data.Tuple
 data Graph = Graph AL.AdjacencyList deriving (Eq, Show)
 
 mkGraph :: Int -> [(Int, Int)] -> Graph
-mkGraph n edges = foldr (\edge acc -> insert acc edge) (Graph (AL.initAdjacencyList n)) edges
+mkGraph n edges = 
+  foldr (\edge acc -> insert acc edge) 
+    (Graph (AL.initAdjacencyList n)) edges
 
 neighbors :: Graph -> Int -> [Int]
 neighbors (Graph al) u = AL.neighbors al u

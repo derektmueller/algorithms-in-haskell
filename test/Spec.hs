@@ -6,6 +6,7 @@ import HeapSpec
 import PriorityQueueSpec
 import AdjacencyListSpec
 import GraphSpec
+import DigraphSpec
 
 main :: IO ()
 main = hspec $ do
@@ -13,4 +14,5 @@ main = hspec $ do
   describe_priority_queue
   describe_adjacency_list
   describe_graph
+  describe_digraph
 
